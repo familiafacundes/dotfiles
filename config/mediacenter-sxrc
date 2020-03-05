@@ -1,4 +1,7 @@
 #!/bin/bash
+# 😉 Crédito: Felipe Facundes
+#  Telegram: @FeFacundes
+#  Telegram Group: t.me/winehq_linux
 
 # user init scripts and settings
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -25,11 +28,23 @@ dbus-launch nitrogen --set-zoom-fill "$(find $HOME/Imagens/Wallpapers/ -name '*[
 tint2 &
 pulseaudio -k &
 pkill -9 pulseaudio &
-pulseaudio --start &
 #pulseaudio --disallow-exit --disable-shm &
 pulseaudio --start &
 start-pulseaudio-x11 &
-MUDO=$(pactl list sinks | grep -Ei não | head -n 9)  ; if [ -e $MUDO ] ; then pactl set-sink-mute 0 toggle ; else pactl set-sink-volume 0 100% ; fi
+# Checar se o volume está no mute e, restaurar o som a 100%
+MUTE=$(LC_ALL=C pactl list sinks | grep -Ei yes | head -n 2 | cut -c 8-10)
+if [ -e $MUTE ]; then
+  pactl set-sink-volume 0 100%
+else
+  pactl set-sink-mute 0 toggle
+fi
+
+# Som de inicialização
+cd ~/.local/songs/
+export beep=~/.local/songs/midia-center-family-facundes.ogg
+pactl upload-sample ~/.local/songs/midia-center-family-facundes.ogg
+paplay "$beep" --volume=76767 &
+cd ~/
 #/usr/bin/crd --start &
 #systemctl --user start chrome-remote-desktop &
 sleep 2
