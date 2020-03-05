@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# user init scripts and settings
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_SESSION_TYPE=x11
+xrdb $HOME/.Xresources
+[ "$PATH" == *"$HOME/.local/bin"* ] || PATH="$HOME/.local/bin:$PATH"
+
+vncserver &
+freerdp-shadow-cli /sec:tls &
+#-auth & # Esta opção inicia o freerdp sem autenticação e sem segurança.
+#nm-applet &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+gnome-keyring-daemon --start --components=pkcs11 &
+ksuperkey -e 'Super_L=Alt_L|F1' &
+ksuperkey -e 'Super_R=Alt_L|F1' &
+#xset dpms 600 900 1200
+#xset r rate 350 60
+
+# launch the session
+dbus-run-session openbox &
+dbus-launch nitrogen --set-zoom-fill "$(find $HOME/Imagens/Wallpapers/ -name '*[jJpP][nNpP][gG]' | shuf -n1)" &
+#anyremote -f /usr/share/anyremote/cfg-data/Server-mode/mouse.cfg -s socket:5197 &
+#anyremote -f /usr/share/anyremote/cfg-data/Server-mode/smplayer.cfg -s socket:5197 &
+tint2 &
+pulseaudio -k &
+pkill -9 pulseaudio &
+pulseaudio --start &
+#pulseaudio --disallow-exit --disable-shm &
+pulseaudio --start &
+start-pulseaudio-x11 &
+MUDO=$(pactl list sinks | grep -Ei não | head -n 9)  ; if [ -e $MUDO ] ; then pactl set-sink-mute 0 toggle ; else pactl set-sink-volume 0 100% ; fi
+#/usr/bin/crd --start &
+#systemctl --user start chrome-remote-desktop &
+sleep 2
+"$HOME"/.screenlayout/unica.sh &
+sleep 2
+volumeicon
+#while true; do anyremote -f /usr/share/anyremote/cfg-data/Server-mode/all-in-one.cfg -s socket:5197 ; done
