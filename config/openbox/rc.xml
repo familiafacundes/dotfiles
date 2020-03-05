@@ -1,3 +1,10 @@
+<!--
+# 😉 Crédito: Felipe Facundes
+#  Telegram: @FeFacundes
+#  Telegram Group: t.me/winehq_linux
+# 😅 Dúvidas:  http://openbox.org/wiki/Main_Page
+#              http://openbox.org/wiki/Special:Search/Help
+-->
 <openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
   <resistance>
     <strength>10</strength>
