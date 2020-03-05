@@ -329,12 +329,12 @@
     </keybind>
     <keybind key="C-S-A-d">
       <action name="Execute">
-        <command>bash -c &quot;/bin/openrc-shutdown --poweroff now&quot;</command>
+        <command>bash -c &quot;/bin/openrc-shutdown --poweroff now ; systemctl -i poweroff&quot;</command>
       </action>
     </keybind>
     <keybind key="C-S-A-BackSpace">
       <action name="Execute">
-        <command>bash -c &quot;/bin/openrc-shutdown --reboot now&quot;</command>
+        <command>bash -c &quot;/bin/openrc-shutdown --reboot now ; systemctl -i reboot&quot;</command>
       </action>
     </keybind>
     <keybind key="C-A-q">
@@ -343,9 +343,19 @@
         <prompt>Matar todos os programas abertos?</prompt>
       </action>
     </keybind>
+    <keybind key="C-A-Delete">
+      <action name="Execute">
+        <command>watch -g pkill -9 -u &quot;$USER&quot;</command>
+      </action>
+    </keybind>
     <keybind key="C-A-Escape">
       <action name="Execute">
         <command>xkill</command>
+      </action>
+    </keybind>
+    <keybind key="C-Escape">
+      <action name="Execute">
+        <command>sakura -t HTOP -e htop</command>
       </action>
     </keybind>
     <keybind key="C-W-o">
@@ -787,6 +797,9 @@
     <keybind key="W-Tab">
       <action name="DesktopLast"/>
     </keybind>
+    <keybind key="A-0">
+      <action name="BreakChroot"/>
+    </keybind>
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
@@ -795,6 +808,9 @@
     </keybind>
     <keybind key="A-S-Tab">
       <action name="PreviousWindow"/>
+    </keybind>
+    <keybind key="A-Escape">
+      <action name="NextWindow"/>
     </keybind>
     <keybind key="A-F4">
       <action name="Close"/>
