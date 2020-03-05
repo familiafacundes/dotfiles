@@ -163,10 +163,10 @@
      Many programs reserve space automatically, but you can use this in other
      cases. -->
   <margins>
-    <top>2</top>
-    <bottom>2</bottom>
-    <left>2</left>
-    <right>2</right>
+    <top>0</top>
+    <bottom>0</bottom>
+    <left>0</left>
+    <right>0</right>
   </margins>
   <dock>
     <position>TopLeft</position>
@@ -292,29 +292,34 @@
         <command>obs-studio</command>
       </action>
     </keybind>
-    <keybind key="AudioMute">
+    <keybind key="C-A-p">
+      <action name="Execute">
+        <command>pavucontrol</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioMute">
       <action name="Execute">
         <command>pactl set-sink-mute 0 toggle</command>
       </action>
     </keybind>
-    <keybind key="AudioLowerVolume">
+    <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
         <command>pactl set-sink-volume 0 -5%</command>
       </action>
     </keybind>
-    <keybind key="AudioRaiseVolume">
+    <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
         <command>pactl set-sink-volume 0 +5%</command>
       </action>
     </keybind>
-    <keybind key="W-F5">
+    <keybind key="XF86MonBrightnessDown ">
       <action name="Execute">
-        <command>bash -c &quot;/bin/xbacklight -dec 15&quot;</command>
+        <command>light -U 2</command>
       </action>
     </keybind>
-    <keybind key="W-F6">
+    <keybind key="XF86MonBrightnessUp ">
       <action name="Execute">
-        <command>bash -c &quot;/bin/xbacklight -inc 15&quot;</command>
+        <command>light -A 2</command>
       </action>
     </keybind>
     <keybind key="Print">
