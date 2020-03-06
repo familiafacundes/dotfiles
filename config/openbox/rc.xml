@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
 <!--
 # 😉 Crédito: Felipe Facundes
@@ -285,7 +284,7 @@
     </keybind>
     <keybind key="C-A-r">
       <action name="Execute">
-        <command>bash -c 'sakura -e ffmpeg -video_size 1360x768 -framerate 25 -f x11grab -i :1.0 -f pulse -ac 2 -i default "/home/$USER/Videos/Tela_$(date +"%d-%m-%Y_%H:%M:%S").mp4"'</command>
+        <command>bash -c 'sakura -e ffmpeg -video_size 1360x768 -framerate 25 -f x11grab -i :1.0 -f pulse -ac 2 -i default &quot;/home/$USER/Videos/Tela_$(date +&quot;%d-%m-%Y_%H:%M:%S&quot;).mp4&quot;'</command>
       </action>
     </keybind>
     <keybind key="S-A-r">
@@ -313,45 +312,65 @@
         <command>pactl set-sink-volume 0 +5%</command>
       </action>
     </keybind>
-    <keybind key="XF86MonBrightnessDown ">
+    <keybind key="XF86MonBrightnessDown">
       <action name="Execute">
         <command>light -U 2</command>
       </action>
     </keybind>
-    <keybind key="XF86MonBrightnessUp ">
+    <keybind key="XF86MonBrightnessUp">
       <action name="Execute">
         <command>light -A 2</command>
       </action>
     </keybind>
+    <keybind key="XF86ScreenSaver">
+      <action name="Execute">
+        <command>bash -c &quot;echo 0 &gt; /sys/class/backlight/intel_backlight/brightness&quot;</command>
+      </action>
+    </keybind>
     <keybind key="Print">
       <action name="Execute">
-        <command>bash -c 'scrot "/home/$USER/Imagens/Captura de Tela/Captura de tela de %d-%m-%Y %H:%M:%S.png"'</command>
+        <command>bash -c 'cd ~/ ; mkdir -p &quot;$HOME/Imagens/Captura de Tela/&quot; ; scrot &quot;$HOME/Imagens/Captura de Tela/Captura de tela de %d-%m-%Y %H:%M:%S.png&quot; ; mkdir -p ~/.local/songs/ ; cd ~/.local/songs/ ; wget -nc https://github.com/felipefacundes/dotfiles/blob/master/config/songs/camera_shutter.mp3?raw=true -O camera_shutter.mp3 ; paplay ~/.local/songs/camera_shutter.ogg'</command>
+      </action>
+    </keybind>
+    <keybind key="S-Print">
+      <action name="Execute">
+        <command>bash -c 'cd ~/ ; mkdir -p &quot;$HOME/Imagens/Captura de Tela/&quot; ; scrot -d 4 &quot;$HOME/Imagens/Captura de Tela/Captura de tela de %d-%m-%Y %H:%M:%S.png&quot; ; mkdir -p ~/.local/songs/ ; cd ~/.local/songs/ ; wget -nc https://github.com/felipefacundes/dotfiles/blob/master/config/songs/camera_shutter.mp3?raw=true -O camera_shutter.mp3 ; paplay ~/.local/songs/camera_shutter.ogg'</command>
       </action>
     </keybind>
     <keybind key="A-Print">
       <action name="Execute">
-        <command>bash -c 'scrot -d 5 "/home/$USER/Imagens/Captura de Tela/Captura de tela de %d-%m-%Y %H:%M:%S.png"'</command>
+        <command>bash -c 'cd ~/ ; mkdir -p &quot;$HOME/Imagens/Captura de Tela/&quot; ; scrot -s &quot;$HOME/Imagens/Captura de Tela/Captura de tela de %d-%m-%Y %H:%M:%S.png&quot;'</command>
+      </action>
+    </keybind>
+    <keybind key="C-Print">
+      <action name="Execute">
+        <command>bash -c 'cd ~/ ; mkdir -p &quot;$HOME/Imagens/Captura de Tela/&quot; ; scrot -u &quot;$HOME/Imagens/Captura de Tela/Captura de tela de %d-%m-%Y %H:%M:%S.png&quot; ; mkdir -p ~/.local/songs/ ; cd ~/.local/songs/ ; wget -nc https://github.com/felipefacundes/dotfiles/blob/master/config/songs/camera_shutter.mp3?raw=true -O camera_shutter.mp3 ; paplay ~/.local/songs/camera_shutter.ogg'</command>
+      </action>
+    </keybind>
+    <keybind key="C-A-w">
+      <action name="Execute">
+        <command>bash -c 'cd ~/ ; mkdir -p ~/Imagens/Wallpapers/ ; nitrogen --set-zoom-fill &quot;$(ls &quot;$HOME&quot;/Imagens/Wallpapers/*[jJpP][nNpP][gG] | shuf -n 1)&quot;'</command>
       </action>
     </keybind>
     <keybind key="C-S-A-d">
       <action name="Execute">
-        <command>bash -c "/bin/openrc-shutdown --poweroff now ; systemctl -i poweroff"</command>
+        <command>bash -c &quot;/bin/openrc-shutdown --poweroff now ; systemctl -i poweroff&quot;</command>
       </action>
     </keybind>
     <keybind key="C-S-A-BackSpace">
       <action name="Execute">
-        <command>bash -c "/bin/openrc-shutdown --reboot now ; systemctl -i reboot"</command>
+        <command>bash -c &quot;/bin/openrc-shutdown --reboot now ; systemctl -i reboot&quot;</command>
       </action>
     </keybind>
     <keybind key="C-A-q">
       <action name="Execute">
-        <command>watch -g pkill -9 -u "$USER"</command>
+        <command>watch -g pkill -9 -u &quot;$USER&quot;</command>
         <prompt>Matar todos os programas abertos?</prompt>
       </action>
     </keybind>
     <keybind key="C-A-Delete">
       <action name="Execute">
-        <command>watch -g pkill -9 -u "$USER"</command>
+        <command>watch -g pkill -9 -u &quot;$USER&quot;</command>
       </action>
     </keybind>
     <keybind key="C-A-Escape">
