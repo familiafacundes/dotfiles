@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+<openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
 <!--
 # 😉 Crédito: Felipe Facundes
 #  Telegram: @FeFacundes
@@ -5,7 +7,6 @@
 # 😅 Dúvidas:  http://openbox.org/wiki/Main_Page
 #              http://openbox.org/wiki/Special:Search/Help
 -->
-<openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
   <resistance>
     <strength>10</strength>
     <screen_edge_strength>20</screen_edge_strength>
@@ -284,12 +285,12 @@
     </keybind>
     <keybind key="C-A-r">
       <action name="Execute">
-        <command>bash -c 'sakura -e ffmpeg -video_size 1360x768 -framerate 25 -f x11grab -i :1.0 -f pulse -ac 2 -i default &quot;/home/$USER/Videos/Tela_$(date +&quot;%d-%m-%Y_%H:%M:%S&quot;).mp4&quot;'</command>
+        <command>bash -c 'sakura -e ffmpeg -video_size 1360x768 -framerate 25 -f x11grab -i :1.0 -f pulse -ac 2 -i default "/home/$USER/Videos/Tela_$(date +"%d-%m-%Y_%H:%M:%S").mp4"'</command>
       </action>
     </keybind>
     <keybind key="S-A-r">
       <action name="Execute">
-        <command>obs-studio</command>
+        <command>obs</command>
       </action>
     </keybind>
     <keybind key="C-A-p">
@@ -324,33 +325,33 @@
     </keybind>
     <keybind key="Print">
       <action name="Execute">
-        <command>bash -c 'scrot &quot;/home/$USER/Imagens/Captura de Tela/Captura de tela de %d-%m-%Y %H:%M:%S.png&quot;'</command>
+        <command>bash -c 'scrot "/home/$USER/Imagens/Captura de Tela/Captura de tela de %d-%m-%Y %H:%M:%S.png"'</command>
       </action>
     </keybind>
     <keybind key="A-Print">
       <action name="Execute">
-        <command>bash -c 'scrot -d 5 &quot;/home/$USER/Imagens/Captura de Tela/Captura de tela de %d-%m-%Y %H:%M:%S.png&quot;'</command>
+        <command>bash -c 'scrot -d 5 "/home/$USER/Imagens/Captura de Tela/Captura de tela de %d-%m-%Y %H:%M:%S.png"'</command>
       </action>
     </keybind>
     <keybind key="C-S-A-d">
       <action name="Execute">
-        <command>bash -c &quot;/bin/openrc-shutdown --poweroff now ; systemctl -i poweroff&quot;</command>
+        <command>bash -c "/bin/openrc-shutdown --poweroff now ; systemctl -i poweroff"</command>
       </action>
     </keybind>
     <keybind key="C-S-A-BackSpace">
       <action name="Execute">
-        <command>bash -c &quot;/bin/openrc-shutdown --reboot now ; systemctl -i reboot&quot;</command>
+        <command>bash -c "/bin/openrc-shutdown --reboot now ; systemctl -i reboot"</command>
       </action>
     </keybind>
     <keybind key="C-A-q">
       <action name="Execute">
-        <command>watch -g pkill -9 -u &quot;$USER&quot;</command>
+        <command>watch -g pkill -9 -u "$USER"</command>
         <prompt>Matar todos os programas abertos?</prompt>
       </action>
     </keybind>
     <keybind key="C-A-Delete">
       <action name="Execute">
-        <command>watch -g pkill -9 -u &quot;$USER&quot;</command>
+        <command>watch -g pkill -9 -u "$USER"</command>
       </action>
     </keybind>
     <keybind key="C-A-Escape">
