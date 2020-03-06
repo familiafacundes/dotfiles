@@ -8,7 +8,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_SESSION_TYPE=x11
 xrdb $HOME/.Xresources
 [ "$PATH" == *"$HOME/.local/bin"* ] || PATH="$HOME/.local/bin:$PATH"
-
 vncserver &
 freerdp-shadow-cli /sec:tls &
 #-auth & # Esta opção inicia o freerdp sem autenticação e sem segurança.
@@ -22,7 +21,6 @@ ksuperkey -e 'Super_R=Alt_L|F1' &
 
 # launch the session
 dbus-run-session openbox &
-dbus-launch nitrogen --set-zoom-fill "$(find $HOME/Imagens/Wallpapers/ -name '*[jJpP][nNpP][gG]' | shuf -n1)" &
 #anyremote -f /usr/share/anyremote/cfg-data/Server-mode/mouse.cfg -s socket:5197 &
 #anyremote -f /usr/share/anyremote/cfg-data/Server-mode/smplayer.cfg -s socket:5197 &
 tint2 &
@@ -38,17 +36,14 @@ if [ -e $MUTE ]; then
 else
   pactl set-sink-mute 0 toggle
 fi
-
 # Som de inicialização
-cd ~/.local/songs/
 export beep=~/.local/songs/midia-center-family-facundes.ogg
 pactl upload-sample ~/.local/songs/midia-center-family-facundes.ogg
-paplay "$beep" --volume=76767 &
-cd ~/
+paplay "$beep" --volume=76767 && "$HOME"/.screenlayout/unica.sh &
 #/usr/bin/crd --start &
 #systemctl --user start chrome-remote-desktop &
-sleep 2
-"$HOME"/.screenlayout/unica.sh &
-sleep 2
-volumeicon
+volumeicon &
+# Papel de Parede Aleatório
+#while true; do nitrogen --set-zoom-fill "$(find $HOME/Imagens/Wallpapers/ -name '*[jJpP][nNpP][gG]' | shuf -n 1)"; sleep 10; done
+while true; do nitrogen --set-zoom-fill "$(ls "$HOME"/Imagens/Wallpapers/*[jJpP][nNpP][gG] | shuf -n 1)"; sleep 10; done
 #while true; do anyremote -f /usr/share/anyremote/cfg-data/Server-mode/all-in-one.cfg -s socket:5197 ; done
