@@ -3,47 +3,79 @@
 #  Telegram: @FeFacundes
 #  Telegram Group: t.me/winehq_linux
 
-# user init scripts and settings
+########################################################################################
+################################## Scripts do Usuário ##################################
+########################################################################################
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_SESSION_TYPE=x11
 xrdb $HOME/.Xresources
 [ "$PATH" == *"$HOME/.local/bin"* ] || PATH="$HOME/.local/bin:$PATH"
+
+########################################################################################
+######################## Programas e serviços a serem iniciados ########################
+########################################################################################
+tint2 &
+volumeicon &
 vncserver &
 freerdp-shadow-cli /sec:tls &
 #-auth & # Esta opção inicia o freerdp sem autenticação e sem segurança.
+#xset dpms 600 900 1200
+#xset r rate 350 60
 #nm-applet &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 gnome-keyring-daemon --start --components=pkcs11 &
 ksuperkey -e 'Super_L=Alt_L|F1' &
 ksuperkey -e 'Super_R=Alt_L|F1' &
-#xset dpms 600 900 1200
-#xset r rate 350 60
-
-# launch the session
-dbus-run-session openbox &
 #anyremote -f /usr/share/anyremote/cfg-data/Server-mode/mouse.cfg -s socket:5197 &
 #anyremote -f /usr/share/anyremote/cfg-data/Server-mode/smplayer.cfg -s socket:5197 &
-tint2 &
+#while true; do anyremote -f /usr/share/anyremote/cfg-data/Server-mode/all-in-one.cfg -s socket:5197 ; done
+#/usr/bin/crd --start &
+#systemctl --user start chrome-remote-desktop &
+nitrogen --set-zoom-fill "$(ls "$HOME"/Imagens/Wallpapers/*[jJpP][nNpP][gG] | shuf -n 1)" &
+dbus-run-session openbox &
+
+########################################################################################
+############## Checar se o volume está no mute e, restaurar o som a 100% ###############
+########################################################################################
+MUTE="$(LC_ALL=C pactl list sinks | grep -Ei yes | head -n 2 | cut -c 8-10)"
+
 pulseaudio -k &
 pkill -9 pulseaudio &
 #pulseaudio --disallow-exit --disable-shm &
 pulseaudio --start &
 start-pulseaudio-x11 &
-# Checar se o volume está no mute e, restaurar o som a 100%
-MUTE=$(LC_ALL=C pactl list sinks | grep -Ei yes | head -n 2 | cut -c 8-10)
+
 if [ -e $MUTE ]; then
   pactl set-sink-volume 0 100%
 else
   pactl set-sink-mute 0 toggle
 fi
-# Som de inicialização
-export beep=~/.local/songs/midia-center-family-facundes.ogg
-pactl upload-sample ~/.local/songs/midia-center-family-facundes.ogg
-paplay "$beep" --volume=76767 && "$HOME"/.screenlayout/unica.sh &
-#/usr/bin/crd --start &
-#systemctl --user start chrome-remote-desktop &
-volumeicon &
-# Papel de Parede Aleatório
-#while true; do nitrogen --set-zoom-fill "$(find $HOME/Imagens/Wallpapers/ -name '*[jJpP][nNpP][gG]' | shuf -n 1)"; sleep 10; done
-while true; do nitrogen --set-zoom-fill "$(ls "$HOME"/Imagens/Wallpapers/*[jJpP][nNpP][gG] | shuf -n 1)"; sleep 10; done
-#while true; do anyremote -f /usr/share/anyremote/cfg-data/Server-mode/all-in-one.cfg -s socket:5197 ; done
+
+########################################################################################
+################################# Som de inicialização #################################
+########################################################################################
+beep=~/.local/songs/media-center-family-facundes.ogg
+pactl upload-sample ~/.local/songs/media-center-family-facundes.ogg
+xset b 100
+sleep 2 && paplay "$beep" --volume=76767 && sleep 0
+
+########################################################################################
+#################################### Fix para Xrandr ###################################
+########################################################################################
+pid="$(pidof paplay)"
+if [ -e $pid ]; then
+  xrandr --newmode "1360x768_60.00" 60.00 1360 1432 1568 1776 768 771 781 798 -hsync +vsync
+  xrandr --addmode LVDS1 1360x768_60.00
+  xrandr|grep 1360
+  xrandr --output LVDS1 --mode 1360x768_60.00 --pos 0x0 --output HDMI1 --mode 1360x768 --pos 0x0
+  #~/.screenlayout/unica.sh
+else
+  echo Não foi dessa vez.
+fi
+########################################################################################
+############################## Papel de Parede Aleatório ###############################
+########################################################################################
+while true; do
+  nitrogen --set-zoom-fill "$(ls "$HOME"/Imagens/Wallpapers/*[jJpP][nNpP][gG] | shuf -n 1)"
+  sleep 10
+done
