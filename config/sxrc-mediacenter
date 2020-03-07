@@ -10,7 +10,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_SESSION_TYPE=x11
 xrdb $HOME/.Xresources
 [ "$PATH" == *"$HOME/.local/bin"* ] || PATH="$HOME/.local/bin:$PATH"
-xset r rate 350 60
+xset r rate 350 60 # auto repeat delay:  350    repeat rate:  60
 
 ########################################################################################
 ######################## Programas e serviços a serem iniciados ########################
@@ -56,7 +56,7 @@ fi
 ########################################################################################
 ################################# Som de inicialização #################################
 ########################################################################################
-pactl list cards | grep -Ei hdmi
+#pactl list cards | grep -Ei hdmi
 pactl set-card-profile 0 output:hdmi-stereo
 beep=~/.local/songs/media-center-family-facundes.ogg
 pactl upload-sample ~/.local/songs/media-center-family-facundes.ogg
@@ -67,20 +67,21 @@ sleep 2 && paplay "$beep" --volume=76767 && sleep 0
 ########################################################################################
 pid="$(pidof paplay)"
 if [ -e $pid ]; then
-  #xset +dpms
-  #xset dpms 600 900 1200
+  # Consulte xset -q
+  xset -dpms # Desativa o DPMS (Energy Star)
+  #xset +dpms # Habilita o DPMS (Energy Star)
+  #xset dpms 600 900 1200 # Habilita o DPMS (Energy Star) com tempo em segundos: Standby: 600    Suspend: 900    Off: 1200
   xrandr --newmode "1360x768_60.00" 60.00 1360 1432 1568 1776 768 771 781 798 -hsync +vsync
   xrandr --addmode LVDS1 1360x768_60.00
-  xrandr|grep 1360
+  xrandr | grep -Ei 1360 # Para consular se o modo 1360 realmente está disponível.
   xrandr --output LVDS1 --mode 1360x768_60.00 --pos 0x0 --output HDMI1 --mode 1360x768 --pos 0x0
-  #~/.screenlayout/unica.sh
 else
   echo Não foi dessa vez.
 fi
 ########################################################################################
 #################################### Fix HDMI Audio ####################################
 ########################################################################################
-pactl list cards | grep -Ei hdmi
+#pactl list cards | grep -Ei hdmi
 pactl set-card-profile 0 output:hdmi-stereo
 
 ########################################################################################
