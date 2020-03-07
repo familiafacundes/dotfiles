@@ -383,6 +383,11 @@
         <command>sakura -t HTOP -e htop</command>
       </action>
     </keybind>
+    <keybind key="W-u">
+      <action name="Execute">
+        <command>bash -c &quot;sakura -m -e sudo pacman -Syyu --noconfirm; sudo mkinitcpio -P; sudo grub-mkconfig -o /boot/grub/grub.cfg&quot;</command>
+      </action>
+    </keybind>
     <keybind key="C-W-o">
       <action name="Execute">
         <command>obkey</command>
