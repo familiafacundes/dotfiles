@@ -16,6 +16,7 @@ xset r rate 350 60 # auto repeat delay:  350    repeat rate:  60
 ######################## Programas e serviços a serem iniciados ########################
 ########################################################################################
 tint2 &
+xinput disable 11 # Desabilitar o touch screen
 volumeicon &
 vncserver &
 freerdp-shadow-cli /sec:tls &
@@ -68,6 +69,10 @@ sleep 2 && paplay "$beep" --volume=76767 && sleep 0
 pid="$(pidof paplay)"
 if [ -e $pid ]; then
   # Consulte xset -q
+  xset s 0 0
+  xset s off
+  xset s noexpose
+  xset s noblank
   xset -dpms # Desativa o DPMS (Energy Star)
   #xset +dpms # Habilita o DPMS (Energy Star)
   #xset dpms 600 900 1200 # Habilita o DPMS (Energy Star) com tempo em segundos: Standby: 600    Suspend: 900    Off: 1200
