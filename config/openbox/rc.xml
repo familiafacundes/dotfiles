@@ -5,6 +5,7 @@
 #  Telegram Group: t.me/winehq_linux
 # 😅 Dúvidas:  http://openbox.org/wiki/Main_Page
 #              http://openbox.org/wiki/Special:Search/Help
+#              http://openbox.org/wiki/Help:Actions
 -->
   <resistance>
     <strength>10</strength>
@@ -21,7 +22,7 @@
        under the mouse pointer. when followMouse is enabled -->
     <underMouse>no</underMouse>
     <!-- move focus under the mouse, even when the mouse is not moving -->
-    <focusDelay>100</focusDelay>
+    <focusDelay>0</focusDelay>
     <!-- when followMouse is enabled, the mouse must be inside the window for
        this many milliseconds (1000 = 1 sec) before moving focus to it -->
     <raiseOnFocus>yes</raiseOnFocus>
@@ -179,9 +180,9 @@
     <direction>Vertical</direction>
     <!-- 'Vertical' or 'Horizontal' -->
     <autoHide>yes</autoHide>
-    <hideDelay>300</hideDelay>
+    <hideDelay>0</hideDelay>
     <!-- in milliseconds (1000 = 1 second) -->
-    <showDelay>300</showDelay>
+    <showDelay>0</showDelay>
     <!-- in milliseconds (1000 = 1 second) -->
     <moveButton>Middle</moveButton>
     <!-- 'Left', 'Middle', 'Right' -->
@@ -416,6 +417,7 @@
       <action name="ToggleMaximizeVert"/>
     </keybind>
     <keybind key="W-c">
+      <action name="UnmaximizeFull"/>
       <action name="MoveToCenter"/>
     </keybind>
     <keybind key="C-W-l">
@@ -521,7 +523,6 @@
         <y>0</y>
       </action>
       <action name="NextWindow">
-        <dialog>none</dialog>
         <finalactions>
           <action name="UnmaximizeFull"/>
           <action name="MoveResizeTo">
@@ -546,7 +547,6 @@
         <y>0</y>
       </action>
       <action name="NextWindow">
-        <dialog>none</dialog>
         <finalactions>
           <action name="UnmaximizeFull"/>
           <action name="MoveResizeTo">
@@ -617,14 +617,6 @@
     <keybind key="W-j">
       <action name="UnmaximizeFull"/>
       <action name="GrowToEdgeWest"/>
-    </keybind>
-    <keybind key="S-W-r">
-      <action name="ResizeRelative">
-        <left>10</left>
-        <right>10</right>
-        <top>10</top>
-        <bottom>10</bottom>
-      </action>
     </keybind>
     <keybind key="W-r">
       <action name="Resize"/>
@@ -824,11 +816,14 @@
         <desktop>10</desktop>
       </action>
     </keybind>
-    <keybind key="W-Tab">
+    <keybind key="W-apostrophe">
       <action name="DesktopLast"/>
     </keybind>
     <keybind key="A-0">
-      <action name="BreakChroot"/>
+      <action name="ToggleOmnipresent"/>
+    </keybind>
+    <keybind key="A-8">
+      <action name="ToggleAlwaysOnTop"/>
     </keybind>
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
@@ -839,8 +834,23 @@
     <keybind key="A-S-Tab">
       <action name="PreviousWindow"/>
     </keybind>
+    <keybind key="W-Tab">
+      <action name="NextWindow">
+        <raise>yes</raise>
+        <allDesktops>yes</allDesktops>
+        <finalactions>
+          <action name="Focus"/>
+          <action name="UnshadeRaise"/>
+        </finalactions>
+      </action>
+    </keybind>
+    <keybind key="S-W-Tab">
+      <action name="PreviousWindow"/>
+    </keybind>
     <keybind key="A-Escape">
-      <action name="NextWindow"/>
+      <action name="Lower"/>
+      <action name="FocusToBottom"/>
+      <action name="Unfocus"/>
     </keybind>
     <keybind key="A-F4">
       <action name="Close"/>
@@ -1057,16 +1067,6 @@
         </action>
       </mousebind>
     </context>
-    <context name="AllDesktops">
-      <mousebind action="Press" button="Left">
-        <action name="Focus"/>
-        <action name="Raise"/>
-        <action name="Unshade"/>
-      </mousebind>
-      <mousebind action="Click" button="Left">
-        <action name="ToggleOmnipresent"/>
-      </mousebind>
-    </context>
     <context name="Shade">
       <mousebind action="Press" button="Left">
         <action name="Focus"/>
@@ -1209,17 +1209,17 @@
        just don't make menu ids clash or, well, it'll be kind of pointless -->
     <!-- default menu file (or custom one in $HOME/.config/openbox/) -->
     <file>menu.xml</file>
-    <hideDelay>100</hideDelay>
+    <hideDelay>0</hideDelay>
     <!-- if a press-release lasts longer than this setting (in milliseconds), the
        menu is hidden again -->
     <middle>no</middle>
     <!-- center submenus vertically about the parent entry -->
-    <submenuShowDelay>100</submenuShowDelay>
+    <submenuShowDelay>0</submenuShowDelay>
     <!-- time to delay before showing a submenu after hovering over the parent
        entry.
        if this is a negative value, then the delay is infinite and the
        submenu will not be shown until it is clicked on -->
-    <submenuHideDelay>100</submenuHideDelay>
+    <submenuHideDelay>0</submenuHideDelay>
     <!-- time to delay before hiding a submenu when selecting another
        entry in parent menu
        if this is a negative value, then the delay is infinite and the
@@ -1244,7 +1244,7 @@
     </application>
     <!-- i want QbitTorrent on desktop 10 and maximized -->
     <application name="qbittorrent">
-      <desktop>10</desktop>
+      <!--<desktop>10</desktop>-->
       <maximized>yes</maximized>
     </application>
     <!-- i want Obkey maximized -->
