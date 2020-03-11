@@ -6,9 +6,6 @@ alsa-lib
 alsa-topology-conf
 alsa-ucm-conf
 aom
-archlabs-icons
-archlabs-keyring
-archlabs-themes
 archlinux-keyring
 argon2
 at-spi2-atk
