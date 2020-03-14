@@ -296,6 +296,12 @@
     <keybind key="C-A-p">
       <action name="Execute">
         <command>pavucontrol</command>
+        <startupnotify>
+          <enabled>yes</enabled>
+          <wmclass>pavucontrol</wmclass>
+          <name>pavucontrol</name>
+          <icon>pavucontrol</icon>
+        </startupnotify>
       </action>
     </keybind>
     <keybind key="XF86AudioMute">
