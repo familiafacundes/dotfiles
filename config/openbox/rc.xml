@@ -1247,6 +1247,10 @@
       <!--<desktop>10</desktop>-->
       <maximized>yes</maximized>
     </application>
+    <!-- i want pavucontrol maximized -->
+    <application name="pavucontrol">
+      <maximized>yes</maximized>
+    </application>
     <!-- i want Obkey maximized -->
     <application name="obkey">
       <maximized>yes</maximized>
