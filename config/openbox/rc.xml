@@ -236,7 +236,7 @@
     </keybind>
     <keybind key="C-W-f">
       <action name="Execute">
-        <command>firefox</command>
+        <command>bash -c 'firefox=&quot;$(pidof firefox)&quot; ; if [ -e $firefox ]; then firefox; else echo no; fi'</command>
         <startupnotify>
           <enabled>yes</enabled>
           <wmclass>firefox</wmclass>
@@ -247,7 +247,7 @@
     </keybind>
     <keybind key="W-w">
       <action name="Execute">
-        <command>firefox</command>
+        <command>bash -c 'firefox=&quot;$(pidof firefox)&quot; ; if [ -e $firefox ]; then firefox; else echo no; fi'</command>
         <startupnotify>
           <enabled>yes</enabled>
           <wmclass>firefox</wmclass>
