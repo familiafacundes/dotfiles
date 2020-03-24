@@ -1,3 +1,4 @@
+#!/bin/bash
 firefox="$(pidof firefox)"
 if [ -e $firefox ]; then
   firefox
