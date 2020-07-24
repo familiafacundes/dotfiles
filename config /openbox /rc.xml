@@ -191,7 +191,7 @@
     <chainQuitKey>C-g</chainQuitKey>
     <keybind key="A-F1">
       <action name="Execute">
-        <command>jgmenu</command>
+        <command>bash -c &quot;rm ~/.jgmenu-lockfile ; jgmenu&quot;</command>
       </action>
     </keybind>
     <keybind key="W-x">
@@ -306,17 +306,17 @@
     </keybind>
     <keybind key="XF86AudioMute">
       <action name="Execute">
-        <command>pactl set-sink-mute 0 toggle</command>
+        <command>pactl set-sink-mute 4 toggle</command>
       </action>
     </keybind>
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-        <command>pactl set-sink-volume 0 -5%</command>
+        <command>pactl set-sink-volume 4 -5%</command>
       </action>
     </keybind>
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
-        <command>pactl set-sink-volume 0 +5%</command>
+        <command>pactl set-sink-volume 4 +5%</command>
       </action>
     </keybind>
     <keybind key="XF86MonBrightnessDown">
